@@ -5,12 +5,12 @@ import { SignUpHeaderLeft, SignUpHeaderRight } from '../component'
 import { SignUp } from './auth/SignUp'
 const index = () => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "white",  }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white", }}>
       <Stack.Screen
         
         options={{
           headerStyle: {
-            // backgroundColor: "white",
+            backgroundColor: "white",
           },
           headerShadowVisible: false,
           headerTitle: "",
@@ -19,7 +19,7 @@ const index = () => {
           headerRight: () => <SignUpHeaderRight />,
         }}
       />
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, marginHorizontal: 10}}>
         <SignUp/>
       </View>
 

@@ -1,18 +1,18 @@
-import React from 'react'
-import { TouchableOpacity, Text, StyleSheet } from 'react-native'
-export const Button = ({text}) => {
+import React from "react";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
+export const Button = ({ text }) => {
   return (
     <TouchableOpacity style={styles.Button}>
       <Text style={styles.ButtonText}>Sign In</Text>
     </TouchableOpacity>
   );
-}
+};
 
 const styles = StyleSheet.create({
   Button: {
     backgroundColor: "black",
     padding: 16,
-    borderRadius: 20,
+    borderRadius: 160,
   },
   ButtonText: {
     color: "white",

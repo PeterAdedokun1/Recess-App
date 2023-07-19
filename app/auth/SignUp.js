@@ -8,9 +8,7 @@ export const SignUp = () => {
         Enter your email & choose {"\n"} you password
       </Text>
 
-          <Button
-              text={"Sign In"}
-          />
+      <Button text={"Sign In"} />
       <View
         style={{
           display: "flex",
@@ -34,7 +32,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 60,
     fontSize: 25,
-    fontWeight: "400",
+    fontWeight: "300",
   },
   footer: {
     textAlign: "center",
@@ -46,7 +44,6 @@ const styles = StyleSheet.create({
   SignUp: {
     color: "#2DC6FF",
     textAlign: "center",
-
     display: "flex",
     justifyContent: "center",
     fontSize: 16,

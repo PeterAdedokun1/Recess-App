@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 17,
     paddingVertical: 8,
     borderRadius: 20,
+    marginTop: 30,
   },
   BtnText: {
     fontWeight: "bold",
