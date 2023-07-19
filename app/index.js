@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, SafeAreaView,StyleSheet } from "react-native"
 import { Stack, useRouter } from "expo-router"
-import { Logo } from '../component'
+import { SignUpHeaderLeft, SignUpHeaderRight } from '../component'
 import { SignUp } from './auth/SignUp'
 const index = () => {
   return (
@@ -15,8 +15,8 @@ const index = () => {
           headerShadowVisible: false,
           headerTitle: "",
         
-          headerLeft: () => <Logo />,
-          headerRight: () => <SignUp />,
+          headerLeft: () => <SignUpHeaderLeft />,
+          headerRight: () => <SignUpHeaderRight />,
         }}
       ></Stack.Screen>
     </SafeAreaView>
