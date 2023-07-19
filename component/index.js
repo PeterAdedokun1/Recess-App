@@ -1,3 +1,4 @@
 import { SignUpHeaderLeft } from "./SignUpHeaderLeft";
 import { SignUpHeaderRight } from "./SignUpHeaderRight";
-export {SignUpHeaderLeft,SignUpHeaderRight}
+import { Button } from "./Button";
+export {SignUpHeaderLeft,SignUpHeaderRight, Button}

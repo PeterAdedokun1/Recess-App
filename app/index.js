@@ -18,7 +18,11 @@ const index = () => {
           headerLeft: () => <SignUpHeaderLeft />,
           headerRight: () => <SignUpHeaderRight />,
         }}
-      ></Stack.Screen>
+      />
+      <View style={{flex: 1}}>
+        <SignUp/>
+      </View>
+
     </SafeAreaView>
   );
 }
