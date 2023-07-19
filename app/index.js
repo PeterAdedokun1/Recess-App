@@ -1,8 +1,8 @@
-import React from 'react'
-import { View, Text, SafeAreaView,StyleSheet } from "react-native"
-import { Stack, useRouter } from "expo-router"
-import { SignUpHeaderLeft, SignUpHeaderRight } from '../component'
-import { SignUp } from './auth/SignUp'
+import React from "react";
+import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import { Stack, useRouter } from "expo-router";
+import { SignUpHeaderLeft, SignUpHeaderRight } from "../component";
+import { SignIn } from "./auth/SignIn";
 const index = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
@@ -19,16 +19,16 @@ const index = () => {
         }}
       />
       <View style={{ flex: 1, marginHorizontal: 10 }}>
-        <SignUp />
+        <SignIn />
       </View>
     </SafeAreaView>
   );
-}
+};
 
-export default index
+export default index;
 
 const styles = StyleSheet.create({
   heading: {
-      backgroundColor:"red"
-    }
-})
+    backgroundColor: "red",
+  },
+});

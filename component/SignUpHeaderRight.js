@@ -1,8 +1,13 @@
+import { useRouter } from "expo-router";
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 export const SignUpHeaderRight = () => {
+  const router = useRouter();
   return (
-    <TouchableOpacity style={styles.BtnContainer}>
+    <TouchableOpacity
+      style={styles.BtnContainer}
+      onPress={() => router.push("/auth/SignUp")}
+    >
       <Text style={styles.BtnText}>Sign up</Text>
     </TouchableOpacity>
   );
@@ -16,7 +21,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 17,
     paddingVertical: 8,
     borderRadius: 20,
-    marginTop: 30,
   },
   BtnText: {
     fontWeight: "bold",
