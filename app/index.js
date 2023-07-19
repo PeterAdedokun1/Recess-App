@@ -9,7 +9,7 @@ const index = () => {
       <Stack.Screen
         options={{
           headerStyle: {
-            backgroundColor: "white",
+            backgroundColor: "#24E4D9",
           },
           headerShadowVisible: false,
           headerTitle: "",
