@@ -13,7 +13,6 @@ const index = () => {
           },
           headerShadowVisible: false,
           headerTitle: "",
-
           headerLeft: () => <SignUpHeaderLeft />,
           headerRight: () => <SignUpHeaderRight />,
         }}

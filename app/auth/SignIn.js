@@ -8,6 +8,9 @@ import {
 } from "react-native";
 import { Button, Input } from "../../component";
 import { useRouter } from "expo-router";
+// import { CheckBox } from "@react-native-community/checkbox";
+// import CheckBox from "@react-native-community/checkbox";
+
 
 export const SignIn = () => {
   const router = useRouter();
@@ -19,6 +22,16 @@ export const SignIn = () => {
 
       <Input title="Email" placeholder="Enter Email" />
       <Input title="Password" placeholder="Enter Password" />
+
+      <View style={styles.forgotPassword}> 
+        <View>
+          {/* <CheckBox /> */}
+          <Text>CheckBox</Text>
+        </View>
+        <TouchableOpacity>
+          <Text>Forgot Password?</Text>
+        </TouchableOpacity>
+      </View>
       <Button text={"Sign In"} />
       <View
         style={{
@@ -66,4 +79,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
   },
+  forgotPassword: {
+    // flex: 1,
+    alignItems: "center",
+    marginVertical: 30,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: 'space-between'
+  }
 });
