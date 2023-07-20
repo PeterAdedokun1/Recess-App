@@ -5,12 +5,13 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
+  Image,
 } from "react-native";
 import { Button, Input } from "../../component";
 import { useRouter } from "expo-router";
-// import { CheckBox } from "@react-native-community/checkbox";
-// import CheckBox from "@react-native-community/checkbox";
-
+import Google from "../../assest/images/Google.png";
+import Facebook from "../../assest/images/Facebook.png";
+import Apple from "../../assest/images/Apple.png";
 
 export const SignIn = () => {
   const router = useRouter();
@@ -21,26 +22,42 @@ export const SignIn = () => {
       </Text>
 
       <Input title="Email" placeholder="Enter Email" />
+      <Input title="Phone Number" placeholder="Enter Password" />
       <Input title="Password" placeholder="Enter Password" />
 
-      <View style={styles.forgotPassword}> 
+      <View style={styles.forgotPassword}>
         <View>
           {/* <CheckBox /> */}
-          <Text>CheckBox</Text>
+          <Text>Remember Me</Text>
         </View>
         <TouchableOpacity>
           <Text>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
+
       <Button text={"Sign In"} />
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
-        <Text style={styles.footer}>New to Today?</Text>
+      {/* divider section */}
+      <View style={styles.DividerContainer}>
+        <Text
+          style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
+        ></Text>
+        <Text style={{ textAlign: "center" }}>or continue with</Text>
+        <Text
+          style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
+        ></Text>
+      </View>
+
+      {/* image section */}
+
+      <View style={styles.ImageContainer}>
+        <Image source={Google} />
+        <Image source={Facebook} style={{ marginHorizontal: 25 }} />
+        <Image source={Apple} />
+      </View>
+
+      {/* footer section */}
+      <View style={styles.footerContainer}>
+        <Text style={styles.footer}>New to Recess?</Text>
         <TouchableOpacity>
           <Text
             style={styles.SignUp}
@@ -62,7 +79,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
     fontSize: 25,
     fontWeight: "400",
-    marginVertical: 40,
+    marginVertical: 10,
   },
   footer: {
     textAlign: "center",
@@ -77,14 +94,29 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: "600",
   },
   forgotPassword: {
-    // flex: 1,
     alignItems: "center",
-    marginVertical: 30,
+    marginVertical: 15,
     display: "flex",
     flexDirection: "row",
-    justifyContent: 'space-between'
-  }
+    justifyContent: "space-between",
+  },
+  footerContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  DividerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 30,
+  },
+  ImageContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginVertical: 30,
+  },
 });
