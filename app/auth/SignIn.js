@@ -30,7 +30,7 @@ export const SignIn = () => {
           {/* <CheckBox /> */}
           <Text>Remember Me</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/auth/ForgotPassword")}>
           <Text>Forgot Password?</Text>
         </TouchableOpacity>
       </View>

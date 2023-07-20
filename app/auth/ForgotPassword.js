@@ -1,9 +1,18 @@
-import { View, Text ,SafeAreaView,StyleSheet} from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 
-import { Stack } from "expo-router";
-import { Back } from "../../component";
+import { Stack, useRouter } from "expo-router";
+import { Back, Button, Input } from "../../component";
+import { useState } from "react";
 
 const ForgotPassword = () => {
+  const router = useRouter();
+  const [tabs, SetTabs] = useState(0);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
       <Stack.Screen
@@ -14,33 +23,59 @@ const ForgotPassword = () => {
           headerShadowVisible: false,
           headerTitle: "Forgot Password",
           headerLeft: () => <Back handlePress={() => router.back()} />,
+          headerTitleStyle: {
+            fontSize: 20,
+          },
         }}
       />
-          <View style={{ marginHorizontal: 10 }}>
-              
+      <View style={{ marginHorizontal: 10 }}>
+        <View>
+          <Text style={styles.headerText}>
+            Enter your registered email or phone number
+          </Text>
+
+          <View style={{ flexDirection: "row", justifyContent: "center" }}>
+            <TouchableOpacity
+              style={{ marginHorizontal: 10 }}
+              onPress={() => SetTabs(0)}
+            >
+              <Text>Email</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => SetTabs(1)}>
+              <Text>Phone</Text>
+            </TouchableOpacity>
+          </View>
+
+          {tabs === 0 && (
+            <View>
+              <Input title="Email" placeholder="Enter Email" />
+              <Button text={"Send Reset"} />
+            </View>
+          )}
+          {tabs === 1 && (
+            <View>
+              <Input title="Password" placeholder="Enter Email" />
+              <Button text={"Send Reset"} />
+            </View>
+          )}
+        </View>
       </View>
     </SafeAreaView>
   );
-}
+};
 
-export default ForgotPassword
+export default ForgotPassword;
 
 const styles = StyleSheet.create({
   headerText: {
     display: "flex",
     justifyContent: "center",
     textAlign: "center",
-    // marginTop: 60,
     fontSize: 25,
     fontWeight: "400",
     marginVertical: 20,
   },
-  footer: {
-    textAlign: "center",
-    display: "flex",
-    justifyContent: "center",
-    fontSize: 16,
-  },
+
   SignUp: {
     color: "#2DC6FF",
     textAlign: "center",
@@ -51,25 +86,9 @@ const styles = StyleSheet.create({
   },
   forgotPassword: {
     alignItems: "center",
-    marginVertical: 15,
+    marginVertical: 5,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  footerContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  DividerContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 30,
-  },
-  ImageContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginVertical: 30,
   },
 });
