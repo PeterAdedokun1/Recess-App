@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   Image,
+
 } from "react-native";
 import { Button } from "../../component";
 import { useRouter } from "expo-router";
@@ -15,8 +16,10 @@ import Apple from "../../assest/images/Apple.png";
 import { InputStyles } from "../../styles/InputStyles";
 import mail from "../../assest/images/mail.png";
 import password from "../../assest/images/password.png";
+import CheckBox from "@react-native-community/checkbox";
 export const SignIn = () => {
   const router = useRouter();
+
   return (
     <View>
       <Text style={styles.headerText}>
@@ -26,7 +29,11 @@ export const SignIn = () => {
       <View style={InputStyles.inputContainer}>
         <Text style={InputStyles.inputText}>Email</Text>
         <View style={InputStyles.smallContainer}>
-          <TextInput style={InputStyles.input} placeholder="Enter your email" />
+          <TextInput
+            style={InputStyles.input}
+            placeholder="Enter your email"
+            keyboardType="email-address"
+          />
           <Image
             style={{
               marginBottom: 20,
@@ -38,8 +45,7 @@ export const SignIn = () => {
       <View style={InputStyles.inputContainer}>
         <Text style={InputStyles.inputText}>Password</Text>
         <View style={InputStyles.smallContainer}>
-          <TextInput style={InputStyles.input} placeholder="Password" />
-          
+          <TextInput style={InputStyles.input} placeholder="Password" secureTextEntry={ true} />
           <Image
             style={{
               marginBottom: 20,
