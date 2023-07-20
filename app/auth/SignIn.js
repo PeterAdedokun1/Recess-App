@@ -13,7 +13,8 @@ import Google from "../../assest/images/Google.png";
 import Facebook from "../../assest/images/Facebook.png";
 import Apple from "../../assest/images/Apple.png";
 import { InputStyles } from "../../styles/InputStyles";
-import mail from "../../assest/images/mail.png"
+import mail from "../../assest/images/mail.png";
+import password from "../../assest/images/password.png";
 export const SignIn = () => {
   const router = useRouter();
   return (
@@ -31,6 +32,19 @@ export const SignIn = () => {
               marginBottom: 20,
             }}
             source={mail}
+          />
+        </View>
+      </View>
+      <View style={InputStyles.inputContainer}>
+        <Text style={InputStyles.inputText}>Password</Text>
+        <View style={InputStyles.smallContainer}>
+          <TextInput style={InputStyles.input} placeholder="Password" />
+          
+          <Image
+            style={{
+              marginBottom: 20,
+            }}
+            source={password}
           />
         </View>
       </View>
@@ -127,6 +141,6 @@ const styles = StyleSheet.create({
   ImageContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginVertical: 30,
+    marginVertical: 60,
   },
 });
