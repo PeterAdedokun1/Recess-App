@@ -18,7 +18,7 @@ const index = () => {
           headerRight: () => <SignUpHeaderRight />,
         }}
       />
-      <View style={{ flex: 1, marginHorizontal: 10 }}>
+      <View style={{  marginHorizontal: 10 }}>
         <SignIn />
       </View>
     </SafeAreaView>
