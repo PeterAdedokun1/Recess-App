@@ -1,7 +1,10 @@
 import React from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, TextInput, Platform,SafeAreaView } from 'react-native'
-import { Stack } from 'expo-router'
+import { Text, View, TouchableOpacity, StyleSheet, TextInput, Platform,SafeAreaView,Image } from 'react-native'
+import { Stack,useRouter } from 'expo-router'
+
+import { Back } from '../../component'
 const SignUp = () => {
+  const router = useRouter()
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
       <Stack.Screen
@@ -10,7 +13,12 @@ const SignUp = () => {
             backgroundColor: "#24E4D9",
           },
           headerShadowVisible: false,
-          headerTitle: ""
+          headerTitle: "Sign Up",
+          headerTitleStyle: {
+            fontSize: 20,
+          },
+          headerBackVisible: false,
+          headerLeft: () => <Back handlePress={() => router.back()} />,
         }}
       />
     </SafeAreaView>
