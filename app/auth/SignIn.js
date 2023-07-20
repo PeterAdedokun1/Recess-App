@@ -7,12 +7,13 @@ import {
   TextInput,
   Image,
 } from "react-native";
-import { Button, Input } from "../../component";
+import { Button } from "../../component";
 import { useRouter } from "expo-router";
 import Google from "../../assest/images/Google.png";
 import Facebook from "../../assest/images/Facebook.png";
 import Apple from "../../assest/images/Apple.png";
-
+import { InputStyles } from "../../styles/InputStyles";
+import mail from "../../assest/images/mail.png"
 export const SignIn = () => {
   const router = useRouter();
   return (
@@ -21,9 +22,18 @@ export const SignIn = () => {
         Enter your email & choose {"\n"} you password
       </Text>
 
-      <Input title="Email" placeholder="Enter Email" />
-      <Input title="Phone Number" placeholder="Enter Password" />
-      <Input title="Password" placeholder="Enter Password" />
+      <View style={InputStyles.inputContainer}>
+        <Text style={InputStyles.inputText}>Email</Text>
+        <View style={InputStyles.smallContainer}>
+          <TextInput style={InputStyles.input} placeholder="Enter your email" />
+          <Image
+            style={{
+              marginBottom: 20,
+            }}
+            source={mail}
+          />
+        </View>
+      </View>
 
       <View style={styles.forgotPassword}>
         <View>

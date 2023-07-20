@@ -4,7 +4,7 @@ import { Stack,useRouter } from 'expo-router'
 import Google from "../../assest/images/Google.png";
 import Facebook from "../../assest/images/Facebook.png";
 import Apple from "../../assest/images/Apple.png";
-import { Back, Button, Input } from '../../component'
+import { Back, Button,  } from '../../component'
 const SignUp = () => {
   const router = useRouter()
   return (

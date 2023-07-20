@@ -8,11 +8,9 @@ import {
 
 import { Stack, useRouter } from "expo-router";
 import { Back, Button, Input } from "../../component";
-import { useState } from "react";
 
 const ForgotPassword = () => {
   const router = useRouter();
-  const [tabs, SetTabs] = useState(0);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
       <Stack.Screen
@@ -30,34 +28,9 @@ const ForgotPassword = () => {
       />
       <View style={{ marginHorizontal: 10 }}>
         <View>
-          <Text style={styles.headerText}>
-            Enter your registered email or phone number
-          </Text>
-
-          <View style={{ flexDirection: "row", justifyContent: "center" }}>
-            <TouchableOpacity
-              style={{ marginHorizontal: 10 }}
-              onPress={() => SetTabs(0)}
-            >
-              <Text>Email</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => SetTabs(1)}>
-              <Text>Phone</Text>
-            </TouchableOpacity>
-          </View>
-
-          {tabs === 0 && (
-            <View>
-              <Input title="Email" placeholder="Enter Email" />
-              <Button text={"Send Reset"} />
-            </View>
-          )}
-          {tabs === 1 && (
-            <View>
-              <Input title="Password" placeholder="Enter Email" />
-              <Button text={"Send Reset"} />
-            </View>
-          )}
+          <Text style={styles.headerText}>Enter your registered email</Text>
+          <Input title="Email" placeholder="Enter Email" />
+          <Button text={"Send Reset"} />
         </View>
       </View>
     </SafeAreaView>
