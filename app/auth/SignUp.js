@@ -9,6 +9,8 @@ import { InputStyles } from '../../styles/InputStyles';
 import mail from "../../assest/images/mail.png";
 import user from "../../assest/images/user.png";
 import password from "../../assest/images/password.png";
+import { footerStyles } from '../../styles/FooterStyles';
+import { ButtonStyles } from '../../styles/ButtonStyles';
 const SignUp = () => {
   const router = useRouter()
   return (
@@ -105,7 +107,9 @@ const SignUp = () => {
             </View>
           </View>
 
-          <Button text={"Sign Up"} />
+          <TouchableOpacity style={ButtonStyles.Button}>
+            <Text style={ButtonStyles.ButtonText}>Sign Up</Text>
+          </TouchableOpacity>
           {/* divider section */}
           <View style={styles.DividerContainer}>
             <Text
@@ -124,6 +128,18 @@ const SignUp = () => {
             <Image source={Apple} />
           </View>
         </View>
+        {/* footer section */}
+        <View style={footerStyles.footerContainer}>
+          <Text style={footerStyles.footer}>Already have an account?</Text>
+          <TouchableOpacity>
+            <Text
+              style={footerStyles.link}
+              onPress={() => router.push("/")}
+            >
+              Sign In
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -136,10 +152,9 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     textAlign: "center",
-    // marginTop: 60,
     fontSize: 25,
     fontWeight: "400",
-    marginVertical: 20,
+    marginVertical: 10,
   },
  
   SignUp: {
