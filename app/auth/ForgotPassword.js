@@ -4,11 +4,15 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+    TextInput,
+  Image
 } from "react-native";
 
 import { Stack, useRouter } from "expo-router";
 import { Back, Button, Input } from "../../component";
-
+import { ButtonStyles } from "../../styles/ButtonStyles";
+import { InputStyles } from "../../styles/InputStyles";
+import password from "../../assest/images/password.png";
 const ForgotPassword = () => {
   const router = useRouter();
   return (
@@ -29,8 +33,27 @@ const ForgotPassword = () => {
       <View style={{ marginHorizontal: 10 }}>
         <View>
           <Text style={styles.headerText}>Enter your registered email</Text>
-          <Input title="Email" placeholder="Enter Email" />
-          <Button text={"Send Reset"} />
+          {/* <Input title="Email" placeholder="Enter Email" /> */}
+          {/* <Button text={"Send Reset"} /> */}
+          <View style={InputStyles.inputContainer}>
+            <Text style={InputStyles.inputText}>Email</Text>
+            <View style={InputStyles.smallContainer}>
+              <TextInput
+                style={InputStyles.input}
+                              placeholder="Enter your Email"
+                              keyboardType="email-address"
+              />
+              <Image
+                style={{
+                  marginBottom: 20,
+                }}
+                source={password}
+              />
+            </View>
+          </View>
+          <TouchableOpacity style={ButtonStyles.Button}>
+            <Text style={ButtonStyles.ButtonText}>Send Reset</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
