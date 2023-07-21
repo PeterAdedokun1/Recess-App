@@ -5,6 +5,10 @@ import Google from "../../assest/images/Google.png";
 import Facebook from "../../assest/images/Facebook.png";
 import Apple from "../../assest/images/Apple.png";
 import { Back, Button,  } from '../../component'
+import { InputStyles } from '../../styles/InputStyles';
+import mail from "../../assest/images/mail.png";
+import user from "../../assest/images/user.png";
+import password from "../../assest/images/password.png";
 const SignUp = () => {
   const router = useRouter()
   return (
@@ -27,14 +31,74 @@ const SignUp = () => {
         <View>
           <Text style={styles.headerText}>Create your account</Text>
 
-          <Input title="Email" placeholder="Enter Email" />
-          <Input title="Phone Number" placeholder="Enter Password" />
-          <Input title="Password" placeholder="Enter Password" />
-          <Input title="Confirm Password" placeholder="Enter Password" />
+          {/* input */}
+          <View style={InputStyles.inputContainer}>
+            <Text style={InputStyles.inputText}>Name</Text>
+            <View style={InputStyles.smallContainer}>
+              <TextInput
+                style={InputStyles.input}
+                placeholder="Enter your name"
+              />
+              <Image
+                style={{
+                  marginBottom: 20,
+                }}
+                source={user}
+              />
+            </View>
+          </View>
+          <View style={InputStyles.inputContainer}>
+            <Text style={InputStyles.inputText}>Email</Text>
+            <View style={InputStyles.smallContainer}>
+              <TextInput
+                style={InputStyles.input}
+                placeholder="Enter your email"
+                keyboardType="email-address"
+              />
+              <Image
+                style={{
+                  marginBottom: 20,
+                }}
+                source={mail}
+              />
+            </View>
+          </View>
+          <View style={InputStyles.inputContainer}>
+            <Text style={InputStyles.inputText}>Password</Text>
+            <View style={InputStyles.smallContainer}>
+              <TextInput
+                style={InputStyles.input}
+                placeholder="Enter your password"
+                secureTextEntry={true}
+              />
+              <Image
+                style={{
+                  marginBottom: 20,
+                }}
+                source={password}
+              />
+            </View>
+          </View>
+          <View style={InputStyles.inputContainer}>
+            <Text style={InputStyles.inputText}>Confirm Password</Text>
+            <View style={InputStyles.smallContainer}>
+              <TextInput
+                style={InputStyles.input}
+                placeholder="Enter your confirm password"
+                secureTextEntry={true}
+              />
+              <Image
+                style={{
+                  marginBottom: 20,
+                }}
+                source={password}
+              />
+            </View>
+          </View>
 
+          {/* <CheckBox /> */}
           <View style={styles.forgotPassword}>
             <View>
-              {/* <CheckBox /> */}
               <Text>
                 I agree to Recess Terms of service and Privacy Policy.
               </Text>
@@ -54,7 +118,6 @@ const SignUp = () => {
           </View>
 
           {/* image section */}
-
           <View style={styles.ImageContainer}>
             <Image source={Google} />
             <Image source={Facebook} style={{ marginHorizontal: 25 }} />

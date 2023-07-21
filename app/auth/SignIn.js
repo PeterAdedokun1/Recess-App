@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TextInput,
   Image,
-
 } from "react-native";
 import { Button } from "../../component";
 import { useRouter } from "expo-router";
@@ -16,7 +15,8 @@ import Apple from "../../assest/images/Apple.png";
 import { InputStyles } from "../../styles/InputStyles";
 import mail from "../../assest/images/mail.png";
 import password from "../../assest/images/password.png";
-import CheckBox from "@react-native-community/checkbox";
+import { ButtonStyles } from "../../styles/ButtonStyles";
+import { footerStyles } from "../../styles/FooterStyles";
 export const SignIn = () => {
   const router = useRouter();
 
@@ -45,7 +45,11 @@ export const SignIn = () => {
       <View style={InputStyles.inputContainer}>
         <Text style={InputStyles.inputText}>Password</Text>
         <View style={InputStyles.smallContainer}>
-          <TextInput style={InputStyles.input} placeholder="Password" secureTextEntry={ true} />
+          <TextInput
+            style={InputStyles.input}
+            placeholder="Password"
+            secureTextEntry={true}
+          />
           <Image
             style={{
               marginBottom: 20,
@@ -65,7 +69,10 @@ export const SignIn = () => {
         </TouchableOpacity>
       </View>
 
-      <Button text={"Sign In"} />
+      <TouchableOpacity style={ButtonStyles.Button}>
+        <Text style={ButtonStyles.ButtonText}>Sign In</Text>
+      </TouchableOpacity>
+
       {/* divider section */}
       <View style={styles.DividerContainer}>
         <Text
@@ -86,11 +93,11 @@ export const SignIn = () => {
       </View>
 
       {/* footer section */}
-      <View style={styles.footerContainer}>
-        <Text style={styles.footer}>New to Recess?</Text>
+      <View style={footerStyles.footerContainer}>
+        <Text style={footerStyles.footer}>New to Recess?</Text>
         <TouchableOpacity>
           <Text
-            style={styles.SignUp}
+            style={footerStyles.link}
             onPress={() => router.push("/auth/SignUp")}
           >
             Sign Up
@@ -111,21 +118,6 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     marginVertical: 10,
   },
-  footer: {
-    textAlign: "center",
-
-    display: "flex",
-    justifyContent: "center",
-    fontSize: 16,
-  },
-  SignUp: {
-    color: "#2DC6FF",
-    textAlign: "center",
-    display: "flex",
-    justifyContent: "center",
-    fontSize: 16,
-    fontWeight: "600",
-  },
   forgotPassword: {
     alignItems: "center",
     marginVertical: 15,
@@ -133,11 +125,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  footerContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
+
   DividerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
