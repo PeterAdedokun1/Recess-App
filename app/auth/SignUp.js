@@ -24,12 +24,12 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { auth } from "../../firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-
+import { FIREBASE_ERRORS } from "../../firebase/error";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 const SignUp = () => {
   const router = useRouter();
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, user, loading, error,] =
     useCreateUserWithEmailAndPassword(auth);
 
   const validateSchema = yup.object().shape({
@@ -76,7 +76,6 @@ const SignUp = () => {
         }}
         onSubmit={(values) =>
           createUserWithEmailAndPassword(values.email, values.password)
-        
         }
         validationSchema={validateSchema}
       >
@@ -124,10 +123,16 @@ const SignUp = () => {
                   />
                 </View>
               </View>
+
+              
               {errors.email && (
                 <Text style={{ color: "red" }}>{errors.email}</Text>
               )}
-
+              {error && (
+                <Text style={{ color: "red" }}>
+                  {FIREBASE_ERRORS[error.message]}
+                </Text>
+              )}
               <View style={InputStyles.inputContainer}>
                 <Text style={InputStyles.inputText}>Password</Text>
                 <View style={InputStyles.smallContainer}>
@@ -179,7 +184,6 @@ const SignUp = () => {
                   </Text>
                 </View>
               </View>
-
               <TouchableOpacity
                 style={ButtonStyles.Button}
                 onPress={handleSubmit}
