@@ -22,16 +22,11 @@ import { footerStyles } from "../../styles/FooterStyles";
 import { ButtonStyles } from "../../styles/ButtonStyles";
 import { Formik } from "formik";
 import * as yup from "yup";
-import {useCreateUserWithEmailAndPassword} from "react-firebase-hooks"
-
-
-
+import { auth } from "../../firebase/firebase";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
-
-
-
 const SignUp = () => {
   const router = useRouter();
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -46,16 +41,16 @@ const SignUp = () => {
     password: yup
       .string()
       .min(6)
-      .matches(passwordRules, {
-        message:
-          "Your password must container uppercase, lowercase & numbers",
-      })
+      // .matches(passwordRules, {
+      //   message: "Your password must container uppercase, lowercase & numbers",
+      // })
       .required("Please enter your password"),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password"), null], "Password must match")
       .required("please confirm your password"),
   });
+  console.log("kljshjhdj")
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
       <Stack.Screen
@@ -79,7 +74,10 @@ const SignUp = () => {
           password: "",
           confirmPassword: "",
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) =>
+          createUserWithEmailAndPassword(values.email, values.password)
+        
+        }
         validationSchema={validateSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -186,7 +184,9 @@ const SignUp = () => {
                 style={ButtonStyles.Button}
                 onPress={handleSubmit}
               >
-                <Text style={ButtonStyles.ButtonText}>Sign Up</Text>
+                <Text style={ButtonStyles.ButtonText}>
+                  {loading ? "loading....." : " Sign Up"}
+                </Text>
               </TouchableOpacity>
               {/* divider section */}
               <View style={styles.DividerContainer}>
