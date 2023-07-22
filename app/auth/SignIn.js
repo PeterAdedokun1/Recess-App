@@ -20,13 +20,25 @@ import { footerStyles } from "../../styles/FooterStyles";
 
 import { Formik } from "formik";
 import * as yup from "yup";
+const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
+//min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 
 export const SignIn = () => {
   const router = useRouter();
-  const validateScheme = yup.object().shape({
-    email: yup.string().email("Not a valid email address")
-  })
-
+  const validateSchema = yup.object().shape({
+    email: yup
+      .string()
+      .email("Not a valid email address")
+      .required("Please enter an email address to continue "),
+    password: yup
+      .string()
+      .min(6)
+      .matches(passwordRules, { message: "Please create  a stronger password" })
+      .required("Please enter your password"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Password must match").required("please confirm your password")
+  });
 
   return (
     <View>
@@ -37,9 +49,9 @@ export const SignIn = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values, "peter Adedokun")}
-        
+        validationSchema={validateSchema}
       >
-        {({ handleChange, handleBlur, handleSubmit, values ,errors}) => (
+        {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
           <>
             <View style={InputStyles.inputContainer}>
               <Text style={InputStyles.inputText}>Email</Text>
