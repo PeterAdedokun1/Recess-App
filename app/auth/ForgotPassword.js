@@ -13,8 +13,17 @@ import { Back, Button, Input } from "../../component";
 import { ButtonStyles } from "../../styles/ButtonStyles";
 import { InputStyles } from "../../styles/InputStyles";
 import mail from "../../assest/images/mail.png";
+import { Formik } from "formik";
+import * as yup from "yup";
 const ForgotPassword = () => {
   const router = useRouter();
+    const validateSchema = yup.object().shape({
+      email: yup
+        .string()
+        .email("Not a valid email address")
+        .required("Please enter an email address to continue "),
+      
+    });
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
       <Stack.Screen
@@ -30,30 +39,48 @@ const ForgotPassword = () => {
           },
         }}
       />
-      <View style={{ marginHorizontal: 10 }}>
-        <View>
-          <Text style={styles.headerText}>Enter your registered email</Text>
-          <View style={InputStyles.inputContainer}>
-            <Text style={InputStyles.inputText}>Email</Text>
-            <View style={InputStyles.smallContainer}>
-              <TextInput
-                style={InputStyles.input}
-                placeholder="Enter your Email"
-                keyboardType="email-address"
-              />
-              <Image
-                style={{
-                  marginBottom: 20,
-                }}
-                source={mail}
-              />
+      <Formik
+        initialValues={{
+          email: "",
+        }}
+        onSubmit={(values) => console.log(values, "peter Adedokun")}
+        validationSchema={validateSchema}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+          <View style={{ marginHorizontal: 10 }}>
+            <View>
+              <Text style={styles.headerText}>Enter your registered email</Text>
+              <View style={InputStyles.inputContainer}>
+                <Text style={InputStyles.inputText}>Email</Text>
+                <View style={InputStyles.smallContainer}>
+                  <TextInput
+                    style={InputStyles.input}
+                    placeholder="Enter your Email"
+                    keyboardType="email-address"
+                    onChangeText={handleChange("email")}
+                    value={values.email}
+                  />
+                  <Image
+                    style={{
+                      marginBottom: 20,
+                    }}
+                    source={mail}
+                  />
+                </View>
+              </View>
+              {errors.email && (
+                <Text style={{ color: "red" }}>{errors.email}</Text>
+              )}
+              <TouchableOpacity
+                style={ButtonStyles.Button}
+                onPress={handleSubmit}
+              >
+                <Text style={ButtonStyles.ButtonText}>Send Reset</Text>
+              </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity style={ButtonStyles.Button}>
-            <Text style={ButtonStyles.ButtonText}>Send Reset</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+        )}
+      </Formik>
     </SafeAreaView>
   );
 };

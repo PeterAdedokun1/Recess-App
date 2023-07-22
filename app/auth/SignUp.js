@@ -27,7 +27,7 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 const SignUp = () => {
   const router = useRouter();
   const validateSchema = yup.object().shape({
-    name: yup.string().required(),
+    name: yup.string().min(3).required(),
     email: yup
       .string()
       .email("Not a valid email address")
@@ -95,7 +95,7 @@ const SignUp = () => {
                 </View>
               </View>
               {errors.name && (
-                <Text style={{ color: "red" }}>{errors.name }</Text>
+                <Text style={{ color: "red" }}>{errors.name}</Text>
               )}
               <View style={InputStyles.inputContainer}>
                 <Text style={InputStyles.inputText}>Email</Text>
@@ -116,7 +116,7 @@ const SignUp = () => {
                 </View>
               </View>
               {errors.email && (
-                <Text style={{ color: "red" }}>{ errors.email}</Text>
+                <Text style={{ color: "red" }}>{errors.email}</Text>
               )}
 
               <View style={InputStyles.inputContainer}>
@@ -138,7 +138,7 @@ const SignUp = () => {
                 </View>
               </View>
               {errors.password && (
-                <Text style={{ color: "red" }}>{errors.password }</Text>
+                <Text style={{ color: "red" }}>{errors.password}</Text>
               )}
               <View style={InputStyles.inputContainer}>
                 <Text style={InputStyles.inputText}>Confirm Password</Text>
@@ -159,7 +159,7 @@ const SignUp = () => {
                 </View>
               </View>
               {errors.confirmPassword && (
-                <Text style={{ color: "red" }}>{errors.confirmPassword }</Text>
+                <Text style={{ color: "red" }}>{errors.confirmPassword}</Text>
               )}
 
               {/* <CheckBox /> */}
