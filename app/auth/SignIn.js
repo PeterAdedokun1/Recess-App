@@ -7,7 +7,6 @@ import {
   TextInput,
   Image,
 } from "react-native";
-import { Button } from "../../component";
 import { useRouter } from "expo-router";
 import Google from "../../assest/images/Google.png";
 import Facebook from "../../assest/images/Facebook.png";

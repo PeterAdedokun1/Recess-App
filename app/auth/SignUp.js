@@ -22,10 +22,21 @@ import { footerStyles } from "../../styles/FooterStyles";
 import { ButtonStyles } from "../../styles/ButtonStyles";
 import { Formik } from "formik";
 import * as yup from "yup";
+import {useCreateUserWithEmailAndPassword} from "react-firebase-hooks"
+
+
+
+
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
+
+
+
 const SignUp = () => {
   const router = useRouter();
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
   const validateSchema = yup.object().shape({
     name: yup.string().min(3).required(),
     email: yup
@@ -37,7 +48,7 @@ const SignUp = () => {
       .min(6)
       .matches(passwordRules, {
         message:
-          "Your password must container uppercase, lower & numbers and special characters",
+          "Your password must container uppercase, lowercase & numbers",
       })
       .required("Please enter your password"),
     confirmPassword: yup
@@ -68,7 +79,7 @@ const SignUp = () => {
           password: "",
           confirmPassword: "",
         }}
-        onSubmit={(values) => console.log(values, "peter Adedokun")}
+        onSubmit={(values) => console.log(values)}
         validationSchema={validateSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
