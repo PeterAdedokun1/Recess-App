@@ -17,8 +17,16 @@ import mail from "../../assest/images/mail.png";
 import password from "../../assest/images/password.png";
 import { ButtonStyles } from "../../styles/ButtonStyles";
 import { footerStyles } from "../../styles/FooterStyles";
+
+import { Formik } from "formik";
+import * as yup from "yup";
+
 export const SignIn = () => {
   const router = useRouter();
+  const validateScheme = yup.object().shape({
+    email: yup.string().email("Not a valid email address")
+  })
+
 
   return (
     <View>
@@ -26,53 +34,71 @@ export const SignIn = () => {
         Enter your email & choose {"\n"} you password
       </Text>
 
-      <View style={InputStyles.inputContainer}>
-        <Text style={InputStyles.inputText}>Email</Text>
-        <View style={InputStyles.smallContainer}>
-          <TextInput
-            style={InputStyles.input}
-            placeholder="Enter your email"
-            keyboardType="email-address"
-          />
-          <Image
-            style={{
-              marginBottom: 20,
-            }}
-            source={mail}
-          />
-        </View>
-      </View>
-      <View style={InputStyles.inputContainer}>
-        <Text style={InputStyles.inputText}>Password</Text>
-        <View style={InputStyles.smallContainer}>
-          <TextInput
-            style={InputStyles.input}
-            placeholder="Password"
-            secureTextEntry={true}
-          />
-          <Image
-            style={{
-              marginBottom: 20,
-            }}
-            source={password}
-          />
-        </View>
-      </View>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        onSubmit={(values) => console.log(values, "peter Adedokun")}
+        
+      >
+        {({ handleChange, handleBlur, handleSubmit, values ,errors}) => (
+          <>
+            <View style={InputStyles.inputContainer}>
+              <Text style={InputStyles.inputText}>Email</Text>
+              <View style={InputStyles.smallContainer}>
+                <TextInput
+                  style={InputStyles.input}
+                  placeholder="Enter your email"
+                  keyboardType="email-address"
+                  onChangeText={handleChange("email")}
+                  value={values.email}
+                />
+                <Image
+                  style={{
+                    marginBottom: 20,
+                  }}
+                  source={mail}
+                />
+              </View>
+            </View>
+            <View style={InputStyles.inputContainer}>
+              <Text style={InputStyles.inputText}>Password</Text>
+              <View style={InputStyles.smallContainer}>
+                <TextInput
+                  style={InputStyles.input}
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  onChangeText={handleChange("password")}
+                  value={values.password}
+                />
+                <Image
+                  style={{
+                    marginBottom: 20,
+                  }}
+                  source={password}
+                />
+              </View>
+            </View>
+            <View style={styles.forgotPassword}>
+              <View>
+                {/* <CheckBox /> */}
+                <Text>Remember Me</Text>
+              </View>
+              <TouchableOpacity
+                onPress={() => router.push("/auth/ForgotPassword")}
+              >
+                <Text>Forgot Password?</Text>
+              </TouchableOpacity>
+            </View>
 
-      <View style={styles.forgotPassword}>
-        <View>
-          {/* <CheckBox /> */}
-          <Text>Remember Me</Text>
-        </View>
-        <TouchableOpacity onPress={() => router.push("/auth/ForgotPassword")}>
-          <Text>Forgot Password?</Text>
-        </TouchableOpacity>
-      </View>
-{/* button */}
-      <TouchableOpacity style={ButtonStyles.Button}>
-        <Text style={ButtonStyles.ButtonText}>Sign In</Text>
-      </TouchableOpacity>
-
+            {/* button */}
+            <TouchableOpacity
+              style={ButtonStyles.Button}
+              onPress={handleSubmit}
+            >
+              <Text style={ButtonStyles.ButtonText}>Sign In</Text>
+            </TouchableOpacity>
+          </>
+        )}
+      </Formik>
       {/* divider section */}
       <View style={styles.DividerContainer}>
         <Text
