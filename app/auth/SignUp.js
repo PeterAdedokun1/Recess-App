@@ -10,9 +10,7 @@ import {
   Image,
 } from "react-native";
 import { Stack, useRouter } from "expo-router";
-import Google from "../../assest/images/Google.png";
-import Facebook from "../../assest/images/Facebook.png";
-import Apple from "../../assest/images/Apple.png";
+
 import { Back, Button } from "../../component";
 import { InputStyles } from "../../styles/InputStyles";
 import mail from "../../assest/images/mail.png";
@@ -23,8 +21,9 @@ import { ButtonStyles } from "../../styles/ButtonStyles";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { auth } from "../../firebase/firebase";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { FIREBASE_ERRORS } from "../../firebase/error";
+import { AuthImage } from "../../component/AuthImage";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 const SignUp = () => {
@@ -209,11 +208,8 @@ const SignUp = () => {
               </View>
 
               {/* image section */}
-              <View style={styles.ImageContainer}>
-                <Image source={Google} />
-                <Image source={Facebook} style={{ marginHorizontal: 25 }} />
-                <Image source={Apple} />
-              </View>
+              <AuthImage/>
+         
             </View>
             {/* footer section */}
             <View style={footerStyles.footerContainer}>
