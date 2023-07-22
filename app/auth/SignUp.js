@@ -1,40 +1,50 @@
-import React from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, TextInput, Platform,SafeAreaView,Image } from 'react-native'
-import { Stack,useRouter } from 'expo-router'
+import React from "react";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+  Platform,
+  SafeAreaView,
+  Image,
+} from "react-native";
+import { Stack, useRouter } from "expo-router";
 import Google from "../../assest/images/Google.png";
 import Facebook from "../../assest/images/Facebook.png";
 import Apple from "../../assest/images/Apple.png";
-import { Back, Button,  } from '../../component'
-import { InputStyles } from '../../styles/InputStyles';
+import { Back, Button } from "../../component";
+import { InputStyles } from "../../styles/InputStyles";
 import mail from "../../assest/images/mail.png";
 import user from "../../assest/images/user.png";
 import password from "../../assest/images/password.png";
-import { footerStyles } from '../../styles/FooterStyles';
-import { ButtonStyles } from '../../styles/ButtonStyles';
+import { footerStyles } from "../../styles/FooterStyles";
+import { ButtonStyles } from "../../styles/ButtonStyles";
 import { Formik } from "formik";
 import * as yup from "yup";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 const SignUp = () => {
-  const router = useRouter()
-    const validateSchema = yup.object().shape({
-      email: yup
-        .string()
-        .email("Not a valid email address")
-        .required("Please enter an email address to continue "),
-      password: yup
-        .string()
-        .min(6)
-        .matches(passwordRules, {
-          message:
-            "Your password must container uppercase, lower & numbers and special characters",
-        })
-        .required("Please enter your password"),
-      confirmPassword: yup
-        .string()
-        .oneOf([yup.ref("password"), null], "Password must match")
-        .required("please confirm your password"),
-    });
+  const router = useRouter();
+  const validateSchema = yup.object().shape({
+    name: yup.string().required(),
+    email: yup
+      .string()
+      .email("Not a valid email address")
+      .required("Please enter an email address to continue "),
+    password: yup
+      .string()
+      .min(6)
+      .matches(passwordRules, {
+        message:
+          "Your password must container uppercase, lower & numbers and special characters",
+      })
+      .required("Please enter your password"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Password must match")
+      .required("please confirm your password"),
+  });
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
       <Stack.Screen
@@ -52,126 +62,167 @@ const SignUp = () => {
         }}
       />
       <Formik
-        initialValues={{ name: "",email: "", password: "", confirmPassword: "" }}
+        initialValues={{
+          name: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        }}
         onSubmit={(values) => console.log(values, "peter Adedokun")}
         validationSchema={validateSchema}
       >
-        <View style={{ marginHorizontal: 10 }}>
-          <View>
-            <Text style={styles.headerText}>Create your account</Text>
+        {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+          <View style={{ marginHorizontal: 10 }}>
+            <View>
+              <Text style={styles.headerText}>Create your account</Text>
 
-            {/* input */}
-            <View style={InputStyles.inputContainer}>
-              <Text style={InputStyles.inputText}>Name</Text>
-              <View style={InputStyles.smallContainer}>
-                <TextInput
-                  style={InputStyles.input}
-                  placeholder="Enter your name"
-                />
-                <Image
-                  style={{
-                    marginBottom: 20,
-                  }}
-                  source={user}
-                />
+              {/* input */}
+              <View style={InputStyles.inputContainer}>
+                <Text style={InputStyles.inputText}>Name</Text>
+                <View style={InputStyles.smallContainer}>
+                  <TextInput
+                    style={InputStyles.input}
+                    placeholder="Enter your name"
+                    onChangeText={handleChange("name")}
+                    value={values.name}
+                  />
+                  <Image
+                    style={{
+                      marginBottom: 20,
+                    }}
+                    source={user}
+                  />
+                </View>
               </View>
-            </View>
-            <View style={InputStyles.inputContainer}>
-              <Text style={InputStyles.inputText}>Email</Text>
-              <View style={InputStyles.smallContainer}>
-                <TextInput
-                  style={InputStyles.input}
-                  placeholder="Enter your email"
-                  keyboardType="email-address"
-                />
-                <Image
-                  style={{
-                    marginBottom: 20,
-                  }}
-                  source={mail}
-                />
+              {errors.name && (
+                <Text style={{ color: "red" }}>{errors.name }</Text>
+              )}
+              <View style={InputStyles.inputContainer}>
+                <Text style={InputStyles.inputText}>Email</Text>
+                <View style={InputStyles.smallContainer}>
+                  <TextInput
+                    style={InputStyles.input}
+                    placeholder="Enter your email"
+                    keyboardType="email-address"
+                    onChangeText={handleChange("email")}
+                    value={values.email}
+                  />
+                  <Image
+                    style={{
+                      marginBottom: 20,
+                    }}
+                    source={mail}
+                  />
+                </View>
               </View>
-            </View>
+              {errors.email && (
+                <Text style={{ color: "red" }}>{ errors.email}</Text>
+              )}
 
-            <View style={InputStyles.inputContainer}>
-              <Text style={InputStyles.inputText}>Password</Text>
-              <View style={InputStyles.smallContainer}>
-                <TextInput
-                  style={InputStyles.input}
-                  placeholder="Enter your password"
-                  secureTextEntry={true}
-                />
-                <Image
-                  style={{
-                    marginBottom: 20,
-                  }}
-                  source={password}
-                />
+              <View style={InputStyles.inputContainer}>
+                <Text style={InputStyles.inputText}>Password</Text>
+                <View style={InputStyles.smallContainer}>
+                  <TextInput
+                    style={InputStyles.input}
+                    placeholder="Enter your password"
+                    secureTextEntry={true}
+                    onChangeText={handleChange("password")}
+                    value={values.password}
+                  />
+                  <Image
+                    style={{
+                      marginBottom: 20,
+                    }}
+                    source={password}
+                  />
+                </View>
               </View>
-            </View>
-            <View style={InputStyles.inputContainer}>
-              <Text style={InputStyles.inputText}>Confirm Password</Text>
-              <View style={InputStyles.smallContainer}>
-                <TextInput
-                  style={InputStyles.input}
-                  placeholder="Enter your confirm password"
-                  secureTextEntry={true}
-                />
-                <Image
-                  style={{
-                    marginBottom: 20,
-                  }}
-                  source={password}
-                />
+              {errors.password && (
+                <Text style={{ color: "red" }}>{errors.password }</Text>
+              )}
+              <View style={InputStyles.inputContainer}>
+                <Text style={InputStyles.inputText}>Confirm Password</Text>
+                <View style={InputStyles.smallContainer}>
+                  <TextInput
+                    style={InputStyles.input}
+                    placeholder="Enter your confirm password"
+                    secureTextEntry={true}
+                    onChangeText={handleChange("confirmPassword")}
+                    value={values.confirmPassword}
+                  />
+                  <Image
+                    style={{
+                      marginBottom: 20,
+                    }}
+                    source={password}
+                  />
+                </View>
               </View>
-            </View>
+              {errors.confirmPassword && (
+                <Text style={{ color: "red" }}>{errors.confirmPassword }</Text>
+              )}
 
-            {/* <CheckBox /> */}
-            <View style={styles.forgotPassword}>
-              <View>
-                <Text>
-                  I agree to Recess Terms of service and Privacy Policy.
+              {/* <CheckBox /> */}
+              <View style={styles.forgotPassword}>
+                <View>
+                  <Text>
+                    I agree to Recess Terms of service and Privacy Policy.
+                  </Text>
+                </View>
+              </View>
+
+              <TouchableOpacity
+                style={ButtonStyles.Button}
+                onPress={handleSubmit}
+              >
+                <Text style={ButtonStyles.ButtonText}>Sign Up</Text>
+              </TouchableOpacity>
+              {/* divider section */}
+              <View style={styles.DividerContainer}>
+                <Text
+                  style={{
+                    width: "32.3%",
+                    height: 1,
+                    backgroundColor: "white",
+                  }}
+                ></Text>
+                <Text style={{ textAlign: "center" }}>or continue with</Text>
+                <Text
+                  style={{
+                    width: "32.3%",
+                    height: 1,
+                    backgroundColor: "white",
+                  }}
+                ></Text>
+              </View>
+
+              {/* image section */}
+              <View style={styles.ImageContainer}>
+                <Image source={Google} />
+                <Image source={Facebook} style={{ marginHorizontal: 25 }} />
+                <Image source={Apple} />
+              </View>
+            </View>
+            {/* footer section */}
+            <View style={footerStyles.footerContainer}>
+              <Text style={footerStyles.footer}>Already have an account?</Text>
+              <TouchableOpacity>
+                <Text
+                  style={footerStyles.link}
+                  onPress={() => router.push("/")}
+                >
+                  Sign In
                 </Text>
-              </View>
-            </View>
-
-            <TouchableOpacity style={ButtonStyles.Button}>
-              <Text style={ButtonStyles.ButtonText}>Sign Up</Text>
-            </TouchableOpacity>
-            {/* divider section */}
-            <View style={styles.DividerContainer}>
-              <Text
-                style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
-              ></Text>
-              <Text style={{ textAlign: "center" }}>or continue with</Text>
-              <Text
-                style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
-              ></Text>
-            </View>
-
-            {/* image section */}
-            <View style={styles.ImageContainer}>
-              <Image source={Google} />
-              <Image source={Facebook} style={{ marginHorizontal: 25 }} />
-              <Image source={Apple} />
+              </TouchableOpacity>
             </View>
           </View>
-          {/* footer section */}
-          <View style={footerStyles.footerContainer}>
-            <Text style={footerStyles.footer}>Already have an account?</Text>
-            <TouchableOpacity>
-              <Text style={footerStyles.link} onPress={() => router.push("/")}>
-                Sign In
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        )}
       </Formik>
     </SafeAreaView>
   );
-}
+};
 
-export default SignUp
+export default SignUp;
 
 const styles = StyleSheet.create({
   headerText: {
@@ -182,7 +233,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     marginVertical: 10,
   },
- 
+
   SignUp: {
     color: "#2DC6FF",
     textAlign: "center",
@@ -198,7 +249,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
- 
+
   DividerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
