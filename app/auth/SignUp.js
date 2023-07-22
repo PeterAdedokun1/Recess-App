@@ -11,8 +11,30 @@ import user from "../../assest/images/user.png";
 import password from "../../assest/images/password.png";
 import { footerStyles } from '../../styles/FooterStyles';
 import { ButtonStyles } from '../../styles/ButtonStyles';
+import { Formik } from "formik";
+import * as yup from "yup";
+const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
+//min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 const SignUp = () => {
   const router = useRouter()
+    const validateSchema = yup.object().shape({
+      email: yup
+        .string()
+        .email("Not a valid email address")
+        .required("Please enter an email address to continue "),
+      password: yup
+        .string()
+        .min(6)
+        .matches(passwordRules, {
+          message:
+            "Your password must container uppercase, lower & numbers and special characters",
+        })
+        .required("Please enter your password"),
+      confirmPassword: yup
+        .string()
+        .oneOf([yup.ref("password"), null], "Password must match")
+        .required("please confirm your password"),
+    });
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
       <Stack.Screen
@@ -29,118 +51,122 @@ const SignUp = () => {
           headerLeft: () => <Back handlePress={() => router.back()} />,
         }}
       />
-      <View style={{ marginHorizontal: 10 }}>
-        <View>
-          <Text style={styles.headerText}>Create your account</Text>
+      <Formik
+        initialValues={{ name: "",email: "", password: "", confirmPassword: "" }}
+        onSubmit={(values) => console.log(values, "peter Adedokun")}
+        validationSchema={validateSchema}
+      >
+        <View style={{ marginHorizontal: 10 }}>
+          <View>
+            <Text style={styles.headerText}>Create your account</Text>
 
-          {/* input */}
-          <View style={InputStyles.inputContainer}>
-            <Text style={InputStyles.inputText}>Name</Text>
-            <View style={InputStyles.smallContainer}>
-              <TextInput
-                style={InputStyles.input}
-                placeholder="Enter your name"
-              />
-              <Image
-                style={{
-                  marginBottom: 20,
-                }}
-                source={user}
-              />
+            {/* input */}
+            <View style={InputStyles.inputContainer}>
+              <Text style={InputStyles.inputText}>Name</Text>
+              <View style={InputStyles.smallContainer}>
+                <TextInput
+                  style={InputStyles.input}
+                  placeholder="Enter your name"
+                />
+                <Image
+                  style={{
+                    marginBottom: 20,
+                  }}
+                  source={user}
+                />
+              </View>
             </View>
-          </View>
-          <View style={InputStyles.inputContainer}>
-            <Text style={InputStyles.inputText}>Email</Text>
-            <View style={InputStyles.smallContainer}>
-              <TextInput
-                style={InputStyles.input}
-                placeholder="Enter your email"
-                keyboardType="email-address"
-              />
-              <Image
-                style={{
-                  marginBottom: 20,
-                }}
-                source={mail}
-              />
+            <View style={InputStyles.inputContainer}>
+              <Text style={InputStyles.inputText}>Email</Text>
+              <View style={InputStyles.smallContainer}>
+                <TextInput
+                  style={InputStyles.input}
+                  placeholder="Enter your email"
+                  keyboardType="email-address"
+                />
+                <Image
+                  style={{
+                    marginBottom: 20,
+                  }}
+                  source={mail}
+                />
+              </View>
             </View>
-          </View>
-          <View style={InputStyles.inputContainer}>
-            <Text style={InputStyles.inputText}>Password</Text>
-            <View style={InputStyles.smallContainer}>
-              <TextInput
-                style={InputStyles.input}
-                placeholder="Enter your password"
-                secureTextEntry={true}
-              />
-              <Image
-                style={{
-                  marginBottom: 20,
-                }}
-                source={password}
-              />
-            </View>
-          </View>
-          <View style={InputStyles.inputContainer}>
-            <Text style={InputStyles.inputText}>Confirm Password</Text>
-            <View style={InputStyles.smallContainer}>
-              <TextInput
-                style={InputStyles.input}
-                placeholder="Enter your confirm password"
-                secureTextEntry={true}
-              />
-              <Image
-                style={{
-                  marginBottom: 20,
-                }}
-                source={password}
-              />
-            </View>
-          </View>
 
-          {/* <CheckBox /> */}
-          <View style={styles.forgotPassword}>
-            <View>
-              <Text>
-                I agree to Recess Terms of service and Privacy Policy.
+            <View style={InputStyles.inputContainer}>
+              <Text style={InputStyles.inputText}>Password</Text>
+              <View style={InputStyles.smallContainer}>
+                <TextInput
+                  style={InputStyles.input}
+                  placeholder="Enter your password"
+                  secureTextEntry={true}
+                />
+                <Image
+                  style={{
+                    marginBottom: 20,
+                  }}
+                  source={password}
+                />
+              </View>
+            </View>
+            <View style={InputStyles.inputContainer}>
+              <Text style={InputStyles.inputText}>Confirm Password</Text>
+              <View style={InputStyles.smallContainer}>
+                <TextInput
+                  style={InputStyles.input}
+                  placeholder="Enter your confirm password"
+                  secureTextEntry={true}
+                />
+                <Image
+                  style={{
+                    marginBottom: 20,
+                  }}
+                  source={password}
+                />
+              </View>
+            </View>
+
+            {/* <CheckBox /> */}
+            <View style={styles.forgotPassword}>
+              <View>
+                <Text>
+                  I agree to Recess Terms of service and Privacy Policy.
+                </Text>
+              </View>
+            </View>
+
+            <TouchableOpacity style={ButtonStyles.Button}>
+              <Text style={ButtonStyles.ButtonText}>Sign Up</Text>
+            </TouchableOpacity>
+            {/* divider section */}
+            <View style={styles.DividerContainer}>
+              <Text
+                style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
+              ></Text>
+              <Text style={{ textAlign: "center" }}>or continue with</Text>
+              <Text
+                style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
+              ></Text>
+            </View>
+
+            {/* image section */}
+            <View style={styles.ImageContainer}>
+              <Image source={Google} />
+              <Image source={Facebook} style={{ marginHorizontal: 25 }} />
+              <Image source={Apple} />
+            </View>
+          </View>
+          {/* footer section */}
+          <View style={footerStyles.footerContainer}>
+            <Text style={footerStyles.footer}>Already have an account?</Text>
+            <TouchableOpacity>
+              <Text style={footerStyles.link} onPress={() => router.push("/")}>
+                Sign In
               </Text>
-            </View>
-          </View>
-
-          <TouchableOpacity style={ButtonStyles.Button}>
-            <Text style={ButtonStyles.ButtonText}>Sign Up</Text>
-          </TouchableOpacity>
-          {/* divider section */}
-          <View style={styles.DividerContainer}>
-            <Text
-              style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
-            ></Text>
-            <Text style={{ textAlign: "center" }}>or continue with</Text>
-            <Text
-              style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
-            ></Text>
-          </View>
-
-          {/* image section */}
-          <View style={styles.ImageContainer}>
-            <Image source={Google} />
-            <Image source={Facebook} style={{ marginHorizontal: 25 }} />
-            <Image source={Apple} />
+            </TouchableOpacity>
           </View>
         </View>
-        {/* footer section */}
-        <View style={footerStyles.footerContainer}>
-          <Text style={footerStyles.footer}>Already have an account?</Text>
-          <TouchableOpacity>
-            <Text
-              style={footerStyles.link}
-              onPress={() => router.push("/")}
-            >
-              Sign In
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </Formik>
     </SafeAreaView>
   );
 }
