@@ -34,9 +34,7 @@ export const SignIn = () => {
       .min(6)
       .matches(passwordRules, { message: "Your password must container uppercase, lower & numbers and special characters" })
       .required("Please enter your password"),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password"), null], "Password must match").required("please confirm your password")
+ 
   });
 
   return (
@@ -47,7 +45,7 @@ export const SignIn = () => {
 
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values, "peter Adedokun")}
+        onSubmit={(values) => console.log(values.email)}
         validationSchema={validateSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
