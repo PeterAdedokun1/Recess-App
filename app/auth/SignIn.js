@@ -52,7 +52,7 @@ export const SignIn = () => {
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
           <>
             {error && (
-              <Text style={{ color: "red",textAlign: "center" }}>
+              <Text style={{ color: "red", textAlign: "center" }}>
                 {FIREBASE_ERRORS[error.message]}
               </Text>
             )}
@@ -115,7 +115,9 @@ export const SignIn = () => {
               style={ButtonStyles.Button}
               onPress={handleSubmit}
             >
-              <Text style={ButtonStyles.ButtonText}>Sign In</Text>
+              <Text style={ButtonStyles.ButtonText}>
+                {loading ? "loading....." : " Sign In"}
+              </Text>
             </TouchableOpacity>
           </>
         )}
