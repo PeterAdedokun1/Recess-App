@@ -17,7 +17,6 @@ import mail from "../../assest/images/mail.png";
 import password from "../../assest/images/password.png";
 import { ButtonStyles } from "../../styles/ButtonStyles";
 import { footerStyles } from "../../styles/FooterStyles";
-
 import { Formik } from "formik";
 import * as yup from "yup";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
@@ -33,7 +32,7 @@ export const SignIn = () => {
     password: yup
       .string()
       .min(6)
-      .matches(passwordRules, { message: "Please create  a stronger password" })
+      .matches(passwordRules, { message: "Your password must container uppercase, lower & numbers and special characters" })
       .required("Please enter your password"),
     confirmPassword: yup
       .string()
@@ -71,6 +70,9 @@ export const SignIn = () => {
                 />
               </View>
             </View>
+            {
+              errors.email && <Text style={{color: "red"}}>{ errors.email}</Text>
+            }
             <View style={InputStyles.inputContainer}>
               <Text style={InputStyles.inputText}>Password</Text>
               <View style={InputStyles.smallContainer}>
@@ -89,6 +91,9 @@ export const SignIn = () => {
                 />
               </View>
             </View>
+            {
+              errors.password && <Text style={{color: "red"}}>{ errors.password}</Text>
+            }
             <View style={styles.forgotPassword}>
               <View>
                 {/* <CheckBox /> */}
