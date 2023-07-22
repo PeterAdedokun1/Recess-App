@@ -18,6 +18,9 @@ import { ButtonStyles } from "../../styles/ButtonStyles";
 import { footerStyles } from "../../styles/FooterStyles";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { auth } from "../../firebase/firebase";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { FIREBASE_ERRORS } from "../../firebase/error";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 
@@ -28,13 +31,10 @@ export const SignIn = () => {
       .string()
       .email("Not a valid email address")
       .required("Please enter an email address to continue "),
-    password: yup
-      .string()
-      .min(6)
-      .matches(passwordRules, { message: "Your password must container uppercase, lower & numbers and special characters" })
-      .required("Please enter your password"),
- 
+    password: yup.string().required("Please enter your password"),
   });
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
 
   return (
     <View>
@@ -44,11 +44,18 @@ export const SignIn = () => {
 
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values.email)}
+        onSubmit={(values) =>
+          signInWithEmailAndPassword(values.email, values.password)
+        }
         validationSchema={validateSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
           <>
+            {error && (
+              <Text style={{ color: "red",textAlign: "center" }}>
+                {FIREBASE_ERRORS[error.message]}
+              </Text>
+            )}
             <View style={InputStyles.inputContainer}>
               <Text style={InputStyles.inputText}>Email</Text>
               <View style={InputStyles.smallContainer}>
@@ -67,9 +74,9 @@ export const SignIn = () => {
                 />
               </View>
             </View>
-            {
-              errors.email && <Text style={{color: "red"}}>{ errors.email}</Text>
-            }
+            {errors.email && (
+              <Text style={{ color: "red" }}>{errors.email}</Text>
+            )}
             <View style={InputStyles.inputContainer}>
               <Text style={InputStyles.inputText}>Password</Text>
               <View style={InputStyles.smallContainer}>
@@ -88,9 +95,9 @@ export const SignIn = () => {
                 />
               </View>
             </View>
-            {
-              errors.password && <Text style={{color: "red"}}>{ errors.password}</Text>
-            }
+            {errors.password && (
+              <Text style={{ color: "red" }}>{errors.password}</Text>
+            )}
             <View style={styles.forgotPassword}>
               <View>
                 {/* <CheckBox /> */}
