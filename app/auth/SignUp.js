@@ -124,15 +124,12 @@ const SignUp = () => {
                 </View>
               </View>
 
-              
-              {errors.email && (
-                <Text style={{ color: "red" }}>{errors.email}</Text>
-              )}
-              {error && (
+              {(errors.email || error) && (
                 <Text style={{ color: "red" }}>
-                  {FIREBASE_ERRORS[error.message]}
+                  {errors.email || FIREBASE_ERRORS[error.message]}
                 </Text>
               )}
+         
               <View style={InputStyles.inputContainer}>
                 <Text style={InputStyles.inputText}>Password</Text>
                 <View style={InputStyles.smallContainer}>
