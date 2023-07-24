@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
   ImageContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginVertical: 30,
+    marginVertical: 18,
   },
 });
