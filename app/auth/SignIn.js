@@ -44,9 +44,14 @@ export const SignIn = () => {
 
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) =>
-          signInWithEmailAndPassword(values.email, values.password)
-        }
+        onSubmit={(values) => {
+          try {
+            signInWithEmailAndPassword(values.email, values.password);
+            router.push("/dashboard/Home");
+          } catch (error) {
+            console.log(error);
+          }
+        }}
         validationSchema={validateSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
