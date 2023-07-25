@@ -1,6 +1,7 @@
-import { View,Text ,SafeAreaView,TouchableOpacity} from 'react-native'
-import React from 'react'
-import { Stack } from 'expo-router';
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import React from "react";
+import { Stack } from "expo-router";
+import { UserSection, PlusIcon } from "../../component";
 
 const Home = () => {
   return (
@@ -12,13 +13,13 @@ const Home = () => {
           },
           headerShadowVisible: false,
           headerBackVisible: false,
-          // headerLeft: () => 
-          // headerRight: () => 
+          headerTitle: "",
+          headerLeft: () => <UserSection />,
+          headerRight: () => <PlusIcon />,
         }}
-
       />
     </SafeAreaView>
   );
-}
+};
 
-export default Home
+export default Home;

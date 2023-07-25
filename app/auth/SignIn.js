@@ -35,7 +35,7 @@ export const SignIn = () => {
   });
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-
+console.log(user)
   return (
     <View>
       <Text style={styles.headerText}>
