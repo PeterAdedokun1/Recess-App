@@ -9,7 +9,7 @@ export const AuthImage = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   return (
     <View style={styles.ImageContainer}>
-      <TouchableOpacity onPress={() => signInWithGoogle()}>
+      <TouchableOpacity onPress={async() => signInWithGoogle()}>
         <Image source={Google} />
       </TouchableOpacity>
       <Image source={Facebook} style={{ marginHorizontal: 25 }} />

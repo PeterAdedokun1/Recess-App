@@ -73,8 +73,10 @@ const SignUp = () => {
           password: "",
           confirmPassword: "",
         }}
-        onSubmit={(values) =>
+        onSubmit={async (values) => {
           createUserWithEmailAndPassword(values.email, values.password)
+          console.log(values.email, values.password, values.name)
+        }
         }
         validationSchema={validateSchema}
       >
