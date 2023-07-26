@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -35,7 +35,14 @@ export const SignIn = () => {
   });
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-console.log(user)
+    useEffect(() => {
+      if (user) {
+        setTimeout(() => {
+         router.push("/dashboard/Home")
+        }, 1000);
+      }
+    },[user]);
+  
   return (
     <View>
       <Text style={styles.headerText}>
@@ -45,12 +52,7 @@ console.log(user)
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
-          try {
-            signInWithEmailAndPassword(values.email, values.password);
-            router.push("/dashboard/Home");
-          } catch (error) {
-            console.log(error);
-          }
+          signInWithEmailAndPassword(values.email, values.password);
         }}
         validationSchema={validateSchema}
       >
