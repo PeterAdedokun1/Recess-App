@@ -40,16 +40,15 @@ const SignUp = () => {
     password: yup
       .string()
       .min(6)
-      // .matches(passwordRules, {
-      //   message: "Your password must container uppercase, lowercase & numbers",
-      // })
+      .matches(passwordRules, {
+        message: "Your password must container uppercase, lowercase & numbers",
+      })
       .required("Please enter your password"),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password"), null], "Password must match")
       .required("please confirm your password"),
   });
-  console.log("kljshjhdj")
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
       <Stack.Screen
