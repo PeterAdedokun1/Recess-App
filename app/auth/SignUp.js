@@ -11,17 +11,16 @@ import {
 } from "react-native";
 import { Stack, useRouter } from "expo-router";
 
-import { Back, Button } from "../../component";
+import { Back,  } from "../../component";
 import { InputStyles } from "../../styles/InputStyles";
 import mail from "../../assest/images/mail.png";
-import user from "../../assest/images/user.png";
 import password from "../../assest/images/password.png";
 import { footerStyles } from "../../styles/FooterStyles";
 import { ButtonStyles } from "../../styles/ButtonStyles";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { auth } from "../../firebase/firebase";
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword,  } from "react-firebase-hooks/auth";
 import { FIREBASE_ERRORS } from "../../firebase/error";
 import { AuthImage } from "../../component/AuthImage";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
@@ -83,8 +82,6 @@ const SignUp = () => {
           <View style={{ marginHorizontal: 10 }}>
             <View>
               <Text style={styles.headerText}>Create your account</Text>
-
-              {/* input */}
               <View style={InputStyles.inputContainer}>
                 <Text style={InputStyles.inputText}>Name</Text>
                 <View style={InputStyles.smallContainer}>
@@ -172,8 +169,6 @@ const SignUp = () => {
               {errors.confirmPassword && (
                 <Text style={{ color: "red" }}>{errors.confirmPassword}</Text>
               )}
-
-              {/* <CheckBox /> */}
               <View style={styles.forgotPassword}>
                 <View>
                   <Text>
@@ -189,7 +184,7 @@ const SignUp = () => {
                   {loading ? "loading....." : " Sign Up"}
                 </Text>
               </TouchableOpacity>
-              {/* divider section */}
+
               <View style={styles.DividerContainer}>
                 <Text
                   style={{
@@ -208,11 +203,11 @@ const SignUp = () => {
                 ></Text>
               </View>
 
-              {/* image section */}
+       
               <AuthImage/>
          
             </View>
-            {/* footer section */}
+         
             <View style={footerStyles.footerContainer}>
               <Text style={footerStyles.footer}>Already have an account?</Text>
               <TouchableOpacity>
