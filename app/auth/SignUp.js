@@ -202,12 +202,8 @@ const SignUp = () => {
                   }}
                 ></Text>
               </View>
-
-       
-              <AuthImage/>
-         
+              <AuthImage/>   
             </View>
-         
             <View style={footerStyles.footerContainer}>
               <Text style={footerStyles.footer}>Already have an account?</Text>
               <TouchableOpacity>

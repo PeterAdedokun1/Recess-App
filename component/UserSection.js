@@ -13,10 +13,10 @@ const UserSection = () => {
       <Image source={user} />
       <View>
         <Text>Hello there</Text>
-        {/* <Text> {user.displayName || user.email?.split("@")[0]}</Text> */}
+        <Text> {user.displayName || user.email?.split("@")[0]}</Text>
       </View>
     </View>
-  );
+  ); 
 };
 
 export default UserSection;

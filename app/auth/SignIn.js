@@ -48,7 +48,6 @@ export const SignIn = () => {
       <Text style={styles.headerText}>
         Enter your email & choose {"\n"} you password
       </Text>
-
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
@@ -107,7 +106,7 @@ export const SignIn = () => {
             )}
             <View style={styles.forgotPassword}>
               <View>
-                {/* <CheckBox /> */}
+
                 <Text>Remember Me</Text>
               </View>
               <TouchableOpacity
@@ -116,9 +115,7 @@ export const SignIn = () => {
                 <Text>Forgot Password?</Text>
               </TouchableOpacity>
             </View>
-
-            {/* button */}
-            <TouchableOpacity
+          <TouchableOpacity
               style={ButtonStyles.Button}
               onPress={handleSubmit}
             >
@@ -129,7 +126,6 @@ export const SignIn = () => {
           </>
         )}
       </Formik>
-      {/* divider section */}
       <View style={styles.DividerContainer}>
         <Text
           style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
@@ -139,16 +135,12 @@ export const SignIn = () => {
           style={{ width: "32.3%", height: 1, backgroundColor: "white" }}
         ></Text>
       </View>
-
-      {/* image section */}
-
       <View style={styles.ImageContainer}>
         <Image source={Google} />
         <Image source={Facebook} style={{ marginHorizontal: 25 }} />
         <Image source={Apple} />
       </View>
 
-      {/* footer section */}
       <View style={footerStyles.footerContainer}>
         <Text style={footerStyles.footer}>New to Recess?</Text>
         <TouchableOpacity>
