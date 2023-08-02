@@ -28,8 +28,8 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 const SignUp = () => {
   const router = useRouter();
-  // const [createUserWithEmailAndPassword, user, loading, error,] =
-  //   useCreateUserWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
   const validateSchema = yup.object().shape({
     name: yup.string().min(3).required(),
@@ -73,8 +73,8 @@ const SignUp = () => {
           confirmPassword: "",
         }}
         onSubmit={async (values) => {
-          // createUserWithEmailAndPassword(values.email, values.password);
-          // console.log(values.email, values.password, values.name);
+          createUserWithEmailAndPassword(values.email, values.password);
+          console.log(values.email, values.password, values.name);
         }}
         validationSchema={validateSchema}
       >
@@ -95,7 +95,7 @@ const SignUp = () => {
                     style={{
                       marginBottom: 20,
                     }}
-                    // source={user}
+                    source={user}
                   />
                 </View>
               </View>
@@ -121,17 +121,12 @@ const SignUp = () => {
                 </View>
               </View>
 
-              {errors.email && (
-                // || error
-                <Text style={{ color: "red" }}>
-                  {
-                    errors.email
-                    // ||
-                    // FIREBASE_ERRORS[error.message]
-                  }
-                </Text>
-              )}
-
+              {errors.email &&
+                error(
+                  <Text style={{ color: "red" }}>
+                    {errors.email || FIREBASE_ERRORS[error.message]}
+                  </Text>
+                )}
               <View style={InputStyles.inputContainer}>
                 <Text style={InputStyles.inputText}>Password</Text>
                 <View style={InputStyles.smallContainer}>
@@ -185,13 +180,10 @@ const SignUp = () => {
                 style={ButtonStyles.Button}
                 onPress={handleSubmit}
               >
-              
-                {/* <Text style={ButtonStyles.ButtonText}>
-                  {loading ? "loading....." : " Sign Up"}
-                </Text> */}
                 <Text style={ButtonStyles.ButtonText}>
-                 Sign Up
+                  {loading ? "loading....." : " Sign Up"}
                 </Text>
+                <Text style={ButtonStyles.ButtonText}>Sign Up</Text>
               </TouchableOpacity>
 
               <View style={styles.DividerContainer}>
