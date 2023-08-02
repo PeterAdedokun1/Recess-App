@@ -7,7 +7,7 @@ import {
   TextInput,
   Platform,
   SafeAreaView,
-  Image,
+  Image,ScrollView
 } from "react-native";
 import { Stack, useRouter } from "expo-router";
 
@@ -79,7 +79,7 @@ const SignUp = () => {
         validationSchema={validateSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-          <View style={{ marginHorizontal: 10 }}>
+          <ScrollView style={{ marginHorizontal: 10 }}>
             <View>
               <Text style={styles.headerText}>Create your account</Text>
               <View style={InputStyles.inputContainer}>
@@ -215,7 +215,7 @@ const SignUp = () => {
                 </Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </ScrollView>
         )}
       </Formik>
     </SafeAreaView>

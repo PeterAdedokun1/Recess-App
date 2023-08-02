@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   Image,
+  ScrollView,
 } from "react-native";
 import { useRouter } from "expo-router";
 import Google from "../../assest/images/Google.png";
@@ -39,12 +40,11 @@ export const SignIn = () => {
       if (user) {
         setTimeout(() => {
          router.push("/dashboard/Home")
-        }, 1000);
+        }, 2000);
       }
-    },[user]);
-  
+    },[user])
   return (
-    <View>
+    <ScrollView>
       <Text style={styles.headerText}>
         Enter your email & choose {"\n"} you password
       </Text>
@@ -152,7 +152,7 @@ export const SignIn = () => {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

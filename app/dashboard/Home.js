@@ -5,14 +5,14 @@ import { UserSection, PlusIcon } from "../../component";
 import { auth } from "../../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 const Home = () => {
-  const [user, loading, error] = useAuthState(auth);
+  // const [user, loading, error] = useAuthState(auth);
 
 
 
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
-      {user && (
+      {/* {user && ( */}
         <Stack.Screen
           options={{
             headerStyle: {
@@ -25,7 +25,10 @@ const Home = () => {
             headerRight: () => <PlusIcon />,
           }}
         />
-      )}
+      {/* )} */}
+      <View>
+        <Text>okgnmmmjhff;;ncBnnbxxzaawrn. xdn,lll</Text>
+      </View>
     </SafeAreaView>
   );
 };
