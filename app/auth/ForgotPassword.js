@@ -39,6 +39,7 @@ const ForgotPassword = () => {
           },
           headerShadowVisible: false,
           headerTitle: "Forgot Password",
+          headerTitleAlign: "center",
           headerLeft: () => <Back handlePress={() => router.back()} />,
           headerTitleStyle: {
             fontSize: 20,

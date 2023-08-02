@@ -178,11 +178,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 15,
   },
   ImageContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginVertical: 60,
+    marginVertical: 15,
   },
 });

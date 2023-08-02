@@ -6,11 +6,11 @@ import Google from "../assest/images/Google.png"
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/firebase';
 export const AuthImage = () => {
-  // const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   return (
     <View style={styles.ImageContainer}>
       <TouchableOpacity
-        // onPress={async () => signInWithGoogle()}
+        onPress={async () => signInWithGoogle()}
       >
         <Image source={Google} />
       </TouchableOpacity>

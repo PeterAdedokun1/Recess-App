@@ -6,11 +6,13 @@ export const ButtonStyles = StyleSheet.create({
     padding: 16,
     borderRadius: 160,
     marginTop: 20,
+  
   },
   ButtonText: {
     color: "white",
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 17,
+    
   },
 });

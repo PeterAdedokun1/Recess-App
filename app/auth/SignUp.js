@@ -49,7 +49,7 @@ const SignUp = () => {
       .required("please confirm your password"),
   });
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#24E4D9" }}>
+    <SafeAreaView style={{ backgroundColor: "#24E4D9" }}>
       <Stack.Screen
         options={{
           headerStyle: {
@@ -60,8 +60,9 @@ const SignUp = () => {
           headerTitleStyle: {
             fontSize: 20,
           },
-          headerBackVisible: false,
+          headerTitleAlign: "center",
           headerLeft: () => <Back handlePress={() => router.back()} />,
+         
         }}
       />
       <Formik
@@ -72,10 +73,9 @@ const SignUp = () => {
           confirmPassword: "",
         }}
         onSubmit={async (values) => {
-          createUserWithEmailAndPassword(values.email, values.password)
-          console.log(values.email, values.password, values.name)
-        }
-        }
+          createUserWithEmailAndPassword(values.email, values.password);
+          console.log(values.email, values.password, values.name);
+        }}
         validationSchema={validateSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -126,7 +126,7 @@ const SignUp = () => {
                   {errors.email || FIREBASE_ERRORS[error.message]}
                 </Text>
               )}
-         
+
               <View style={InputStyles.inputContainer}>
                 <Text style={InputStyles.inputText}>Password</Text>
                 <View style={InputStyles.smallContainer}>
@@ -202,7 +202,7 @@ const SignUp = () => {
                   }}
                 ></Text>
               </View>
-              <AuthImage/>   
+              <AuthImage />
             </View>
             <View style={footerStyles.footerContainer}>
               <Text style={footerStyles.footer}>Already have an account?</Text>
