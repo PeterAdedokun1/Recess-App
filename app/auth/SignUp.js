@@ -7,11 +7,12 @@ import {
   TextInput,
   Platform,
   SafeAreaView,
-  Image,ScrollView
+  Image,
+  ScrollView,
 } from "react-native";
 import { Stack, useRouter } from "expo-router";
 
-import { Back,  } from "../../component";
+import { Back } from "../../component";
 import { InputStyles } from "../../styles/InputStyles";
 import mail from "../../assest/images/mail.png";
 import password from "../../assest/images/password.png";
@@ -20,15 +21,15 @@ import { ButtonStyles } from "../../styles/ButtonStyles";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { auth } from "../../firebase/firebase";
-import { useCreateUserWithEmailAndPassword,  } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { FIREBASE_ERRORS } from "../../firebase/error";
 import { AuthImage } from "../../component/AuthImage";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 const SignUp = () => {
   const router = useRouter();
-  const [createUserWithEmailAndPassword, user, loading, error,] =
-    useCreateUserWithEmailAndPassword(auth);
+  // const [createUserWithEmailAndPassword, user, loading, error,] =
+  //   useCreateUserWithEmailAndPassword(auth);
 
   const validateSchema = yup.object().shape({
     name: yup.string().min(3).required(),
@@ -62,7 +63,6 @@ const SignUp = () => {
           },
           headerTitleAlign: "center",
           headerLeft: () => <Back handlePress={() => router.back()} />,
-         
         }}
       />
       <Formik
@@ -73,8 +73,8 @@ const SignUp = () => {
           confirmPassword: "",
         }}
         onSubmit={async (values) => {
-          createUserWithEmailAndPassword(values.email, values.password);
-          console.log(values.email, values.password, values.name);
+          // createUserWithEmailAndPassword(values.email, values.password);
+          // console.log(values.email, values.password, values.name);
         }}
         validationSchema={validateSchema}
       >
@@ -95,7 +95,7 @@ const SignUp = () => {
                     style={{
                       marginBottom: 20,
                     }}
-                    source={user}
+                    // source={user}
                   />
                 </View>
               </View>
@@ -121,9 +121,14 @@ const SignUp = () => {
                 </View>
               </View>
 
-              {(errors.email || error) && (
+              {errors.email && (
+                // || error
                 <Text style={{ color: "red" }}>
-                  {errors.email || FIREBASE_ERRORS[error.message]}
+                  {
+                    errors.email
+                    // ||
+                    // FIREBASE_ERRORS[error.message]
+                  }
                 </Text>
               )}
 
@@ -180,8 +185,12 @@ const SignUp = () => {
                 style={ButtonStyles.Button}
                 onPress={handleSubmit}
               >
-                <Text style={ButtonStyles.ButtonText}>
+              
+                {/* <Text style={ButtonStyles.ButtonText}>
                   {loading ? "loading....." : " Sign Up"}
+                </Text> */}
+                <Text style={ButtonStyles.ButtonText}>
+                 Sign Up
                 </Text>
               </TouchableOpacity>
 

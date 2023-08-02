@@ -5,12 +5,11 @@ import { auth } from "../firebase/firebase";
 import user from "../assest/images/user-img.png";
 const UserSection = () => {
   const [user, loading, error] = useAuthState(auth);
-  console.log(user)
   return (
     <View>
       
       {user && <Text>This is home page brother</Text>}
-      <Image source={user} />
+      {/* <Image source={user} /> */}
       <View>
         <Text>Hello there</Text>
         <Text> {user.displayName || user.email?.split("@")[0]}</Text>

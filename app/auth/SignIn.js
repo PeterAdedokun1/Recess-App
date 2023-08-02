@@ -36,13 +36,14 @@ export const SignIn = () => {
   });
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-    useEffect(() => {
-      if (user) {
-        setTimeout(() => {
-         router.push("/dashboard/Home")
-        }, 2000);
-      }
-    },[user])
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        router.replace("/dashboard/Home");
+      }, 2000);
+      
+    }
+  }, [user]);
   return (
     <ScrollView>
       <Text style={styles.headerText}>
@@ -106,16 +107,17 @@ export const SignIn = () => {
             )}
             <View style={styles.forgotPassword}>
               <View>
-
                 <Text>Remember Me</Text>
               </View>
               <TouchableOpacity
-                onPress={() => router.push("/auth/ForgotPassword")}
+                onPress={() =>
+                  router.push("/auth/ForgotPassword")
+                }
               >
                 <Text>Forgot Password?</Text>
               </TouchableOpacity>
             </View>
-          <TouchableOpacity
+            <TouchableOpacity
               style={ButtonStyles.Button}
               onPress={handleSubmit}
             >
