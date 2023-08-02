@@ -22,6 +22,7 @@ import * as yup from "yup";
 import { auth } from "../../firebase/firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { FIREBASE_ERRORS } from "../../firebase/error";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 
@@ -34,16 +35,36 @@ export const SignIn = () => {
       .required("Please enter an email address to continue "),
     password: yup.string().required("Please enter your password"),
   });
+  //  const localStorage = async (user) => {
+  //    try {
+  //      await AsyncStorage.setItem("user", JSON.stringify(user));
+  //    } catch (error) {
+  //      console.log(error);
+  //    }
+  //  };
+
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  useEffect(() => {
-    if (user) {
-      setTimeout(() => {
-        router.replace("/dashboard/Home");
-      }, 2000);
-      
+  
+  
+  const saveData = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key, value);
+      console.log("Data saved successfully.");
+    } catch (error) {
+      console.log("Error saving data: ", error);
     }
-  }, [user]);
+  };
+    useEffect(() => {
+      if (user) {
+        saveData("user", JSON.stringify( user))
+        setTimeout(() => {
+          router.replace("/dashboard/Home");
+        }, 2000);
+      }
+    }, [user]);
+
+ 
   return (
     <ScrollView>
       <Text style={styles.headerText}>
@@ -110,9 +131,7 @@ export const SignIn = () => {
                 <Text>Remember Me</Text>
               </View>
               <TouchableOpacity
-                onPress={() =>
-                  router.push("/auth/ForgotPassword")
-                }
+                onPress={() => router.push("/auth/ForgotPassword")}
               >
                 <Text>Forgot Password?</Text>
               </TouchableOpacity>
