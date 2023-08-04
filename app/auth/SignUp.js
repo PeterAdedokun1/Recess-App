@@ -28,7 +28,7 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 //min 5 characters, 1 upper case letter , 1 lower case,1 numeric digit
 const SignUp = () => {
   const router = useRouter();
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, user , loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
   const validateSchema = yup.object().shape({
@@ -44,10 +44,10 @@ const SignUp = () => {
         message: "Your password must container uppercase, lowercase & numbers",
       })
       .required("Please enter your password"),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password"), null], "Password must match")
-      .required("please confirm your password"),
+    // confirmPassword: yup
+    //   .string()
+    //   .oneOf([yup.ref("password"), null], "Password must match")
+    //   .required("please confirm your password"),
   });
   return (
     <SafeAreaView style={{ backgroundColor: "#24E4D9" }}>
@@ -74,7 +74,6 @@ const SignUp = () => {
         }}
         onSubmit={async (values) => {
           createUserWithEmailAndPassword(values.email, values.password);
-          console.log(values.email, values.password, values.name);
         }}
         validationSchema={validateSchema}
       >
@@ -122,11 +121,12 @@ const SignUp = () => {
               </View>
 
               {errors.email &&
-                error(
+                // && error(
                   <Text style={{ color: "red" }}>
                     {errors.email || FIREBASE_ERRORS[error.message]}
                   </Text>
-                )}
+                // )
+                }
               <View style={InputStyles.inputContainer}>
                 <Text style={InputStyles.inputText}>Password</Text>
                 <View style={InputStyles.smallContainer}>
@@ -183,7 +183,7 @@ const SignUp = () => {
                 <Text style={ButtonStyles.ButtonText}>
                   {loading ? "loading....." : " Sign Up"}
                 </Text>
-                <Text style={ButtonStyles.ButtonText}>Sign Up</Text>
+               
               </TouchableOpacity>
 
               <View style={styles.DividerContainer}>
